@@ -1,0 +1,113 @@
+.chart-section {
+  margin-bottom: 2.5rem;
+}
+
+.chart-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+}
+
+.chart-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  padding: 1.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.responsive-svg-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Axis Styling */
+.axis text {
+  font-size: 12px;
+  fill: #475569;
+}
+
+.axis path,
+.axis line {
+  stroke: #cbd5e1;
+}
+
+.axis-label {
+  font-size: 13px;
+  font-weight: 600;
+  fill: #1e293b;
+}
+
+/* Histogram Bars */
+.histogram-bar {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.histogram-bar:hover {
+  opacity: 0.75;
+}
+
+/* Scatterplot Points */
+.scatter-circle {
+  transition: opacity 0.15s ease, r 0.15s ease;
+  cursor: pointer;
+}
+
+.scatter-circle:hover {
+  opacity: 1 !important;
+  stroke: #0f172a;
+  stroke-width: 1.5px;
+}
+
+/* Legend Styling */
+.legend-item text {
+  font-size: 12px;
+  fill: #334155;
+  alignment-baseline: middle;
+}
+
+.scatter-tooltip {
+  pointer-events: none; /* Prevents flickering when mouse lands on the tooltip itself */
+}
+
+.scatter-tooltip text {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #ffffff;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Tooltip Base Isolation */
+.scatter-tooltip,
+.histogram-tooltip {
+  pointer-events: none;
+}
+
+/* Scatterplot Tooltip Multi-line Text */
+.scatter-tooltip .tooltip-title {
+  font-size: 12px;
+  font-weight: 700;
+  fill: #f8fafc;
+  text-anchor: middle;
+}
+
+.scatter-tooltip .tooltip-subtitle {
+  font-size: 11px;
+  font-weight: 400;
+  fill: #94a3b8;
+  text-anchor: middle;
+}
+
+/* Histogram Tooltip Text */
+.histogram-tooltip text {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #ffffff;
+  text-anchor: middle;
+  dominant-baseline: central;
+}

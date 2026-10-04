@@ -1,0 +1,394 @@
+/* --- Electric Wizard Cat Palette (High-Contrast & Readable) --- */
+:root {
+  --neon-cyan: #38bdf8;          /* Bright high-contrast Sky/Cyan */
+  --neon-cyan-glow: #00f3ff;
+  --neon-purple: #e879f9;        /* Vivid light magenta */
+  --arcane-pink: #fb7185;
+  
+  /* Ultra-Dark Voids */
+  --bg-void: #05030a;            /* Pitch black background */
+  --card-void: #0f091f;          /* Elevated card surface */
+  --card-border: #38245c;        /* Clear, defined structural borders */
+  --nav-void: rgba(5, 3, 10, 0.94);
+
+  /* High-Readability Typography */
+  --text-radiant: #ffffff;       /* Pure white for prominent headings */
+  --text-high-contrast: #f8fafc; /* Crisp off-white for titles/buttons */
+  --text-body: #cbd5e1;          /* Bright light slate for long paragraphs */
+  --text-muted: #94a3b8;         /* Subdued tertiary text (footer, small notes) */
+  
+  --lightning-shadow: 0 0 15px rgba(0, 243, 255, 0.35), 0 0 25px rgba(168, 85, 247, 0.25);
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-stack);
+  color: var(--text-body);
+  background-color: var(--bg-void);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(192, 132, 252, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(0, 243, 255, 0.06) 0%, transparent 40%);
+  background-attachment: fixed;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Arcane Top Bar --- */
+header {
+  background-color: var(--nav-void);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--neon-cyan);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  transition: var(--transition);
+}
+
+.brand-link:hover .brand-logo {
+  transform: scale(1.15) rotate(-5deg);
+  filter: drop-shadow(0 0 12px var(--neon-cyan-glow));
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 0.75rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-body);
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, #7c3aed, #0284c7);
+  color: #ffffff;
+  font-weight: 700;
+  border: 1px solid var(--neon-cyan);
+  box-shadow: var(--lightning-shadow);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Layout Content --- */
+main {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+h1, h2, h3 {
+  color: var(--text-radiant);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+h1 { 
+  font-size: 2.3rem; 
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+h2 { 
+  font-size: 1.6rem; 
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  color: var(--neon-cyan);
+}
+
+p { 
+  color: var(--text-body);
+  margin-bottom: 1.2rem; 
+  font-size: 1.05rem;
+}
+
+/* Cards */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--card-void);
+  padding: 1.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  opacity: 0.7;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 121, 249, 0.6);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.card:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 12px var(--neon-cyan);
+}
+
+.card h3 {
+  color: var(--neon-purple);
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+/* --- FAQ Accordion --- */
+.faq-section {
+  margin-top: 3.5rem;
+}
+
+.accordion-item {
+  background: var(--card-void);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.accordion-item:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-high-contrast);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.accordion-btn:hover {
+  color: var(--neon-cyan);
+}
+
+.accordion-icon {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--neon-cyan);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out, padding 0.3s ease;
+  padding: 0 1.4rem;
+  background-color: #070310;
+}
+
+.accordion-content p {
+  padding-top: 0.5rem;
+  padding-bottom: 1.25rem;
+  color: var(--text-body);
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 500px; /* Needs a defined non-zero pixel value */
+  padding-top: 0.5rem;
+}
+.accordion-item.open .accordion-icon {
+  transform: rotate(45deg);
+  color: var(--arcane-pink);
+}
+
+/* --- Footer --- */
+footer {
+  background: #020105;
+  border-top: 1px solid var(--card-border);
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
+}
+
+.footer-content em {
+  color: var(--text-body);
+}
+
+/* Responsive container for D3 Visualisations */
+.responsive-svg-container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Ensure the SVG inside scales flexibly to match parent width */
+.responsive-svg-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==============================================================
+   Exercise 5.1: D3 Vertical Bar Chart (Electric Wizard Cat Theme)
+   ============================================================== */
+
+/* Chart container card & SVG frame */
+#bar-chart {
+  background: var(--card-void);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.5rem auto;
+  
+}
+
+#bar-chart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  opacity: 0.8;
+}
+
+/* Base SVG text typography */
+#bar-chart svg text {
+  font-family: var(--font-stack);
+  user-select: none;
+}
+
+/* Interactive Bars */
+#bar-chart .bar {
+  fill: #0284c7;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+#bar-chart .bar:hover {
+  fill: var(--neon-cyan);
+  filter: drop-shadow(0 0 10px var(--neon-cyan-glow));
+  opacity: 1;
+}
+
+/* Axes lines and ticks */
+#bar-chart .axis path,
+#bar-chart .axis line {
+  stroke: var(--card-border);
+  stroke-width: 1.5px;
+}
+
+/* Axis Tick Labels (Screen types & kWh numbers) */
+#bar-chart .axis text {
+  fill: var(--text-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+#bar-chart .x-axis text {
+  fill: var(--text-high-contrast);
+  font-weight: 600;
+}
+
+/* Value Labels on top of each bar */
+#bar-chart .bar-label {
+  fill: var(--neon-cyan);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-anchor: middle;
+  filter: drop-shadow(0 0 6px rgba(0, 243, 255, 0.4));
+}
+
+/* Y-Axis Title (Mean Energy Consumption) */
+#bar-chart .axis-title {
+  fill: var(--neon-purple);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}

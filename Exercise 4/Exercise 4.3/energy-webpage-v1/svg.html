@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Demonstration - Exercise 4.1</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .svg-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #04020a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.1);
+      overflow-x: auto;
+    }
+
+    .svg-showcase svg {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Comparison Section Styles */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .comparison-item {
+      background: #06030e;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .comparison-item:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+    }
+
+    .comparison-item h4 {
+      color: var(--neon-purple);
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .coord-badge {
+      font-size: 0.8rem;
+      background: rgba(0, 243, 255, 0.1);
+      color: var(--neon-cyan);
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .img-frame {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      min-height: 380px;
+      background: #020106;
+      border: 1px dashed var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+    }
+
+    .img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .comparison-item p {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      margin: 0;
+    }
+
+    .comparison-item code {
+      background: #090514;
+      color: var(--neon-cyan);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="brand-link">
+        <img src="assets/img/PowerIcon.png" alt="Electric Wizard Cat Logo" class="brand-logo">
+        <span>ArcaneVolt AU ⚡</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="televisions.html" class="nav-link">Televisions</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="svg.html" class="nav-link active">SVG House</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Exercise 4.1: Vector Graphics & SVG Coordinate System</h1>
+    <p>This demonstration showcases primitive SVG shape rendering, grouping mechanisms (<code style="color: var(--neon-cyan);">&lt;g&gt;</code>), linear path interpolation, and Cartesian coordinate transformation within an <code>800 &times; 600</code> canvas.</p>
+
+    <!-- Original SVG Showcase -->
+    <div class="card">
+      <h3>Vector Illustration: Suburban Homestead</h3>
+      
+      <div class="svg-showcase">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+
+          <!-- Sky -->
+          <rect width="800" height="600" fill="#87CEEB"/>
+
+          <!-- Sun -->
+          <circle cx="680" cy="100" r="55" fill="#FFD54F"/>
+          <g stroke="#FFD54F" stroke-width="8" stroke-linecap="round">
+            <line x1="680" y1="25" x2="680" y2="5"/>
+            <line x1="680" y1="175" x2="680" y2="195"/>
+            <line x1="605" y1="100" x2="585" y2="100"/>
+            <line x1="755" y1="100" x2="775" y2="100"/>
+            <line x1="627" y1="47" x2="612" y2="32"/>
+            <line x1="733" y1="153" x2="748" y2="168"/>
+            <line x1="733" y1="47" x2="748" y2="32"/>
+            <line x1="627" y1="153" x2="612" y2="168"/>
+          </g>
+
+          <!-- Clouds -->
+          <g fill="#FFFFFF" opacity="0.9">
+            <circle cx="120" cy="100" r="28"/>
+            <circle cx="150" cy="85" r="38"/>
+            <circle cx="185" cy="105" r="27"/>
+            <rect x="120" y="100" width="70" height="30" rx="15"/>
+
+            <circle cx="400" cy="75" r="25"/>
+            <circle cx="430" cy="60" r="35"/>
+            <circle cx="465" cy="80" r="25"/>
+            <rect x="400" y="78" width="65" height="28" rx="14"/>
+          </g>
+
+          <!-- Ground -->
+          <path d="M0 430 Q200 390 400 430 T800 420 V600 H0Z" fill="#69B34C"/>
+
+          <!-- Tree left -->
+          <rect x="85" y="300" width="30" height="145" fill="#795548"/>
+          <circle cx="100" cy="270" r="65" fill="#388E3C"/>
+          <circle cx="60" cy="295" r="45" fill="#43A047"/>
+          <circle cx="140" cy="295" r="45" fill="#2E7D32"/>
+          <circle cx="100" cy="230" r="45" fill="#4CAF50"/>
+
+          <!-- Tree right -->
+          <rect x="690" y="320" width="30" height="125" fill="#795548"/>
+          <circle cx="705" cy="290" r="60" fill="#388E3C"/>
+          <circle cx="670" cy="315" r="42" fill="#43A047"/>
+          <circle cx="740" cy="315" r="42" fill="#2E7D32"/>
+          <circle cx="705" cy="250" r="42" fill="#4CAF50"/>
+
+          <!-- House shadow -->
+          <ellipse cx="400" cy="470" rx="285" ry="35" fill="#4A8F38" opacity="0.5"/>
+
+          <!-- House main body -->
+          <rect x="220" y="265" width="360" height="210" fill="#F4C27A"/>
+
+          <!-- Brick details -->
+          <g stroke="#D99A5B" stroke-width="2" opacity="0.55">
+            <line x1="220" y1="310" x2="580" y2="310"/>
+            <line x1="220" y1="355" x2="580" y2="355"/>
+            <line x1="220" y1="400" x2="580" y2="400"/>
+            <line x1="220" y1="445" x2="580" y2="445"/>
+            <line x1="275" y1="265" x2="275" y2="310"/>
+            <line x1="360" y1="265" x2="360" y2="310"/>
+            <line x1="445" y1="265" x2="445" y2="310"/>
+            <line x1="530" y1="265" x2="530" y2="310"/>
+          </g>
+
+          <!-- Roof -->
+          <path d="M170 275 L400 105 L630 275 Z" fill="#B94B3A"/>
+          <path d="M145 280 L400 90 L655 280 L630 305 L400 130 L170 305 Z" fill="#8E3529"/>
+
+          <!-- Roof highlight -->
+          <path d="M400 110 L625 280" stroke="#D96B55" stroke-width="12" opacity="0.7"/>
+          <path d="M400 110 L175 280" stroke="#D96B55" stroke-width="12" opacity="0.7"/>
+
+          <!-- Chimney -->
+          <rect x="500" y="135" width="55" height="120" fill="#A94336"/>
+          <rect x="493" y="128" width="69" height="14" rx="2" fill="#87342B"/>
+
+          <!-- Chimney smoke -->
+          <g fill="#D9D9D9" opacity="0.75">
+            <circle cx="530" cy="105" r="20"/>
+            <circle cx="550" cy="75" r="25"/>
+            <circle cx="535" cy="40" r="18"/>
+          </g>
+
+          <!-- Upper window -->
+          <rect x="335" y="190" width="130" height="80" rx="4" fill="#6EC6E8"/>
+          <rect x="330" y="185" width="140" height="90" rx="5" fill="none" stroke="#FFFFFF" stroke-width="10"/>
+          <line x1="400" y1="190" x2="400" y2="270" stroke="#FFFFFF" stroke-width="7"/>
+          <line x1="335" y1="230" x2="465" y2="230" stroke="#FFFFFF" stroke-width="7"/>
+
+          <!-- Left window -->
+          <rect x="255" y="325" width="100" height="85" rx="4" fill="#69C5E8"/>
+          <rect x="250" y="320" width="110" height="95" rx="5" fill="none" stroke="#FFFFFF" stroke-width="9"/>
+          <line x1="305" y1="325" x2="305" y2="410" stroke="#FFFFFF" stroke-width="6"/>
+          <line x1="255" y1="367" x2="355" y2="367" stroke="#FFFFFF" stroke-width="6"/>
+
+          <!-- Right window -->
+          <rect x="445" y="325" width="100" height="85" rx="4" fill="#69C5E8"/>
+          <rect x="440" y="320" width="110" height="95" rx="5" fill="none" stroke="#FFFFFF" stroke-width="9"/>
+          <line x1="495" y1="325" x2="495" y2="410" stroke="#FFFFFF" stroke-width="6"/>
+          <line x1="445" y1="367" x2="545" y2="367" stroke="#FFFFFF" stroke-width="6"/>
+
+          <!-- Door -->
+          <rect x="365" y="350" width="70" height="125" rx="5" fill="#795548"/>
+          <rect x="370" y="355" width="60" height="120" fill="#8D5A45" stroke="#603D30" stroke-width="4"/>
+
+          <!-- Door window -->
+          <rect x="382" y="370" width="36" height="38" rx="3" fill="#6EC6E8"/>
+          <line x1="400" y1="370" x2="400" y2="408" stroke="#FFFFFF" stroke-width="3"/>
+
+          <!-- Door handle -->
+          <circle cx="415" cy="435" r="5" fill="#FFD54F"/>
+
+          <!-- Door steps -->
+          <rect x="350" y="475" width="100" height="12" rx="3" fill="#B0B0B0"/>
+          <rect x="340" y="487" width="120" height="12" rx="3" fill="#909090"/>
+
+          <!-- Pathway -->
+          <path d="M370 495 Q400 520 430 600 H300 Q350 530 370 495Z" fill="#D2B48C"/>
+
+          <!-- Fence -->
+          <g fill="#F5F5F5" stroke="#D0D0D0" stroke-width="3">
+            <rect x="40" y="405" width="12" height="90"/>
+            <rect x="105" y="405" width="12" height="90"/>
+            <rect x="170" y="405" width="12" height="90"/>
+            <rect x="618" y="405" width="12" height="90"/>
+            <rect x="683" y="405" width="12" height="90"/>
+            <rect x="748" y="405" width="12" height="90"/>
+          </g>
+
+          <g stroke="#FFFFFF" stroke-width="10">
+            <line x1="45" y1="430" x2="180" y2="430"/>
+            <line x1="45" y1="465" x2="180" y2="465"/>
+            <line x1="623" y1="430" x2="755" y2="430"/>
+            <line x1="623" y1="465" x2="755" y2="465"/>
+          </g>
+
+          <!-- Flowers -->
+          <g>
+            <circle cx="205" cy="470" r="7" fill="#FFEB3B"/>
+            <circle cx="195" cy="470" r="7" fill="#FF80AB"/>
+            <circle cx="215" cy="470" r="7" fill="#FF80AB"/>
+            <circle cx="205" cy="460" r="7" fill="#FF80AB"/>
+            <circle cx="205" cy="480" r="7" fill="#FF80AB"/>
+
+            <circle cx="590" cy="475" r="7" fill="#FFEB3B"/>
+            <circle cx="580" cy="475" r="7" fill="#CE93D8"/>
+            <circle cx="600" cy="475" r="7" fill="#CE93D8"/>
+            <circle cx="590" cy="465" r="7" fill="#CE93D8"/>
+            <circle cx="590" cy="485" r="7" fill="#CE93D8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Comparative Coordinate Shifts (4-Image Grid) -->
+    <div class="card">
+      <h3>Coordinate Alteration Analysis</h3>
+      <p>Demonstrating how changes to origin points ($X, Y$) manipulate position, alignment, and composition across the <code>800 &times; 600</code> canvas.</p>
+
+      <div class="comparison-grid">
+        
+        <!-- Image 1: Sun Original -->
+        <div class="comparison-item">
+          <h4>1. Sun (Original Position) <span class="coord-badge">cx="680" cy="100"</span></h4>
+          <div class="img-frame">
+            <img src="assets/img/Sun1.png" alt="Original Sun Position at (680, 100)" onerror="this.src='https://placehold.co/600x450/090514/38bdf8?text=1.+Sun+Original+(cx=680,+cy=100)';">
+          </div>
+          <p>The sun is positioned in the upper right quadrant. The ray group shares origin offsets radiating outward from <code>(680, 100)</code>.</p>
+        </div>
+
+        <!-- Image 2: Sun Moved -->
+        <div class="comparison-item">
+          <h4>2. Sun (Modified Position) <span class="coord-badge">cx="150" cy="120"</span></h4>
+          <div class="img-frame">
+            <img src="assets/img/Sun2.png" alt="Moved Sun Position at (150, 120)" onerror="this.src='https://placehold.co/600x450/090514/e879f9?text=2.+Sun+Moved+(cx=150,+cy=120)';">
+          </div>
+          <p>Decreasing the X-axis coordinate by <strong>530px</strong> translates the sun and its entire beam group to the top-left corner above the trees.</p>
+        </div>
+
+        <!-- Image 3: Door Original -->
+        <div class="comparison-item">
+          <h4>3. Front Door (Centered) <span class="coord-badge">x="365" y="350"</span></h4>
+          <div class="img-frame">
+            <img src="assets/img/Door1.png" alt="Original Door Position at x=365" onerror="this.src='https://placehold.co/600x450/090514/38bdf8?text=3.+Door+Original+(x=365,+y=350)';">
+          </div>
+          <p>The door, steps, and pathway align centrally along the vertical midpoint of the house base between <code>x=220</code> and <code>x=580</code>.</p>
+        </div>
+
+        <!-- Image 4: Door Moved -->
+        <div class="comparison-item">
+          <h4>4. Front Door (Shifted Right) <span class="coord-badge">x="465" y="350"</span></h4>
+          <div class="img-frame">
+            <img src="assets/img/Door2.png" alt="Moved Door Position at x=465" onerror="this.src='https://placehold.co/600x450/090514/e879f9?text=4.+Door+Shifted+(x=465,+y=350)';">
+          </div>
+          <p>Increasing the X origin by <strong>+100px</strong> shifts the door assembly to the right wing, demonstrating coordinate interdependence across child elements.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Step 3: Customised Night-Theme SVG Section -->
+    <div class="card">
+      <h3>Step 3: Customised Scene (Night-Sky &amp; Crescent Moon)</h3>
+      <p>Demonstrating simple attribute modifications: substituting day-time fills for a dark night palette (<code>#1a2238</code>), generating a star cluster, and replacing the sun with an arc-based crescent moon path.</p>
+
+      <div class="svg-showcase">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+
+          <!-- Dark Night Sky -->
+          <rect width="800" height="600" fill="#1a2238"/>
+
+          <!-- Stars -->
+          <g fill="#ffffff" opacity="0.8">
+            <circle cx="80" cy="60" r="2"/>
+            <circle cx="150" cy="120" r="1.5"/>
+            <circle cx="260" cy="50" r="2.5"/>
+            <circle cx="340" cy="90" r="1.5"/>
+            <circle cx="480" cy="40" r="2"/>
+            <circle cx="560" cy="80" r="1.5"/>
+            <circle cx="620" cy="45" r="2"/>
+          </g>
+
+          <!-- Crescent Moon  -->
+          <path d="M 680,50 A 45,45 0 1,0 725,125 A 35,35 0 1,1 680,50 Z" fill="#F4E8A4"/>
+
+          <!-- Clouds -->
+          <g fill="#FFFFFF" opacity="0.4">
+            <circle cx="120" cy="100" r="28"/>
+            <circle cx="150" cy="85" r="38"/>
+            <circle cx="185" cy="105" r="27"/>
+            <rect x="120" y="100" width="70" height="30" rx="15"/>
+
+            <circle cx="400" cy="75" r="25"/>
+            <circle cx="430" cy="60" r="35"/>
+            <circle cx="465" cy="80" r="25"/>
+            <rect x="400" y="78" width="65" height="28" rx="14"/>
+          </g>
+
+          <!-- Ground -->
+          <path d="M0 430 Q200 390 400 430 T800 420 V600 H0Z" fill="#69B34C"/>
+
+          <!-- Tree left -->
+          <rect x="85" y="300" width="30" height="145" fill="#795548"/>
+          <circle cx="100" cy="270" r="65" fill="#388E3C"/>
+          <circle cx="60" cy="295" r="45" fill="#43A047"/>
+          <circle cx="140" cy="295" r="45" fill="#2E7D32"/>
+          <circle cx="100" cy="230" r="45" fill="#4CAF50"/>
+
+          <!-- Tree right -->
+          <rect x="690" y="320" width="30" height="125" fill="#795548"/>
+          <circle cx="705" cy="290" r="60" fill="#388E3C"/>
+          <circle cx="670" cy="315" r="42" fill="#43A047"/>
+          <circle cx="740" cy="315" r="42" fill="#2E7D32"/>
+          <circle cx="705" cy="250" r="42" fill="#4CAF50"/>
+
+          <!-- House shadow -->
+          <ellipse cx="400" cy="470" rx="285" ry="35" fill="#4A8F38" opacity="0.5"/>
+
+          <!-- House main body -->
+          <rect x="220" y="265" width="360" height="210" fill="#F4C27A"/>
+
+          <!-- Brick details -->
+          <g stroke="#D99A5B" stroke-width="2" opacity="0.55">
+            <line x1="220" y1="310" x2="580" y2="310"/>
+            <line x1="220" y1="355" x2="580" y2="355"/>
+            <line x1="220" y1="400" x2="580" y2="400"/>
+            <line x1="220" y1="445" x2="580" y2="445"/>
+            <line x1="275" y1="265" x2="275" y2="310"/>
+            <line x1="360" y1="265" x2="360" y2="310"/>
+            <line x1="445" y1="265" x2="445" y2="310"/>
+            <line x1="530" y1="265" x2="530" y2="310"/>
+          </g>
+
+          <!-- Roof -->
+          <path d="M170 275 L400 105 L630 275 Z" fill="#B94B3A"/>
+          <path d="M145 280 L400 90 L655 280 L630 305 L400 130 L170 305 Z" fill="#8E3529"/>
+
+          <!-- Roof highlight -->
+          <path d="M400 110 L625 280" stroke="#D96B55" stroke-width="12" opacity="0.7"/>
+          <path d="M400 110 L175 280" stroke="#D96B55" stroke-width="12" opacity="0.7"/>
+
+          <!-- Chimney -->
+          <rect x="500" y="135" width="55" height="120" fill="#A94336"/>
+          <rect x="493" y="128" width="69" height="14" rx="2" fill="#87342B"/>
+
+          <!-- Chimney smoke -->
+          <g fill="#D9D9D9" opacity="0.75">
+            <circle cx="530" cy="105" r="20"/>
+            <circle cx="550" cy="75" r="25"/>
+            <circle cx="535" cy="40" r="18"/>
+          </g>
+
+          <!-- Upper window -->
+          <rect x="335" y="190" width="130" height="80" rx="4" fill="#6EC6E8"/>
+          <rect x="330" y="185" width="140" height="90" rx="5" fill="none" stroke="#FFFFFF" stroke-width="10"/>
+          <line x1="400" y1="190" x2="400" y2="270" stroke="#FFFFFF" stroke-width="7"/>
+          <line x1="335" y1="230" x2="465" y2="230" stroke="#FFFFFF" stroke-width="7"/>
+
+          <!-- Left window -->
+          <rect x="255" y="325" width="100" height="85" rx="4" fill="#69C5E8"/>
+          <rect x="250" y="320" width="110" height="95" rx="5" fill="none" stroke="#FFFFFF" stroke-width="9"/>
+          <line x1="305" y1="325" x2="305" y2="410" stroke="#FFFFFF" stroke-width="6"/>
+          <line x1="255" y1="367" x2="355" y2="367" stroke="#FFFFFF" stroke-width="6"/>
+
+          <!-- Right window -->
+          <rect x="445" y="325" width="100" height="85" rx="4" fill="#69C5E8"/>
+          <rect x="440" y="320" width="110" height="95" rx="5" fill="none" stroke="#FFFFFF" stroke-width="9"/>
+          <line x1="495" y1="325" x2="495" y2="410" stroke="#FFFFFF" stroke-width="6"/>
+          <line x1="445" y1="367" x2="545" y2="367" stroke="#FFFFFF" stroke-width="6"/>
+
+          <!-- Door -->
+          <rect x="365" y="350" width="70" height="125" rx="5" fill="#795548"/>
+          <rect x="370" y="355" width="60" height="120" fill="#8D5A45" stroke="#603D30" stroke-width="4"/>
+
+          <!-- Door window -->
+          <rect x="382" y="370" width="36" height="38" rx="3" fill="#6EC6E8"/>
+          <line x1="400" y1="370" x2="400" y2="408" stroke="#FFFFFF" stroke-width="3"/>
+
+          <!-- Door handle -->
+          <circle cx="415" cy="435" r="5" fill="#FFD54F"/>
+
+          <!-- Door steps -->
+          <rect x="350" y="475" width="100" height="12" rx="3" fill="#B0B0B0"/>
+          <rect x="340" y="487" width="120" height="12" rx="3" fill="#909090"/>
+
+          <!-- Pathway -->
+          <path d="M370 495 Q400 520 430 600 H300 Q350 530 370 495Z" fill="#D2B48C"/>
+
+          <!-- Fence -->
+          <g fill="#F5F5F5" stroke="#D0D0D0" stroke-width="3">
+            <rect x="40" y="405" width="12" height="90"/>
+            <rect x="105" y="405" width="12" height="90"/>
+            <rect x="170" y="405" width="12" height="90"/>
+            <rect x="618" y="405" width="12" height="90"/>
+            <rect x="683" y="405" width="12" height="90"/>
+            <rect x="748" y="405" width="12" height="90"/>
+          </g>
+
+          <g stroke="#FFFFFF" stroke-width="10">
+            <line x1="45" y1="430" x2="180" y2="430"/>
+            <line x1="45" y1="465" x2="180" y2="465"/>
+            <line x1="623" y1="430" x2="755" y2="430"/>
+            <line x1="623" y1="465" x2="755" y2="465"/>
+          </g>
+
+          <!-- Flowers -->
+          <g>
+            <circle cx="205" cy="470" r="7" fill="#FFEB3B"/>
+            <circle cx="195" cy="470" r="7" fill="#FF80AB"/>
+            <circle cx="215" cy="470" r="7" fill="#FF80AB"/>
+            <circle cx="205" cy="460" r="7" fill="#FF80AB"/>
+            <circle cx="205" cy="480" r="7" fill="#FF80AB"/>
+
+            <circle cx="590" cy="475" r="7" fill="#FFEB3B"/>
+            <circle cx="580" cy="475" r="7" fill="#CE93D8"/>
+            <circle cx="600" cy="475" r="7" fill="#CE93D8"/>
+            <circle cx="590" cy="465" r="7" fill="#CE93D8"/>
+            <circle cx="590" cy="485" r="7" fill="#CE93D8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+        <div class="card">
+      <h3>Step 4: Grouping (g) windows</h3>
+      <p>Both windows were wrapped into a single <g> group to share identical amber fill and dark timber stroke styles, with the second window positioned seamlessly using transform="translate(190, 0)".</p>
+
+      <div class="svg-showcase">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+
+          <!-- Dark Night Sky -->
+          <rect width="800" height="600" fill="#1a2238"/>
+
+          <!-- Stars -->
+          <g fill="#ffffff" opacity="0.8">
+            <circle cx="80" cy="60" r="2"/>
+            <circle cx="150" cy="120" r="1.5"/>
+            <circle cx="260" cy="50" r="2.5"/>
+            <circle cx="340" cy="90" r="1.5"/>
+            <circle cx="480" cy="40" r="2"/>
+            <circle cx="560" cy="80" r="1.5"/>
+            <circle cx="620" cy="45" r="2"/>
+          </g>
+
+          <!-- Crescent Moon  -->
+          <path d="M 680,50 A 45,45 0 1,0 725,125 A 35,35 0 1,1 680,50 Z" fill="#F4E8A4"/>
+
+          <!-- Clouds -->
+          <g fill="#FFFFFF" opacity="0.4">
+            <circle cx="120" cy="100" r="28"/>
+            <circle cx="150" cy="85" r="38"/>
+            <circle cx="185" cy="105" r="27"/>
+            <rect x="120" y="100" width="70" height="30" rx="15"/>
+
+            <circle cx="400" cy="75" r="25"/>
+            <circle cx="430" cy="60" r="35"/>
+            <circle cx="465" cy="80" r="25"/>
+            <rect x="400" y="78" width="65" height="28" rx="14"/>
+          </g>
+
+          <!-- Ground -->
+          <path d="M0 430 Q200 390 400 430 T800 420 V600 H0Z" fill="#69B34C"/>
+
+          <!-- Tree left -->
+          <rect x="85" y="300" width="30" height="145" fill="#795548"/>
+          <circle cx="100" cy="270" r="65" fill="#388E3C"/>
+          <circle cx="60" cy="295" r="45" fill="#43A047"/>
+          <circle cx="140" cy="295" r="45" fill="#2E7D32"/>
+          <circle cx="100" cy="230" r="45" fill="#4CAF50"/>
+
+          <!-- Tree right -->
+          <rect x="690" y="320" width="30" height="125" fill="#795548"/>
+          <circle cx="705" cy="290" r="60" fill="#388E3C"/>
+          <circle cx="670" cy="315" r="42" fill="#43A047"/>
+          <circle cx="740" cy="315" r="42" fill="#2E7D32"/>
+          <circle cx="705" cy="250" r="42" fill="#4CAF50"/>
+
+          <!-- House shadow -->
+          <ellipse cx="400" cy="470" rx="285" ry="35" fill="#4A8F38" opacity="0.5"/>
+
+          <!-- House main body -->
+          <rect x="220" y="265" width="360" height="210" fill="#F4C27A"/>
+
+          <!-- Brick details -->
+          <g stroke="#D99A5B" stroke-width="2" opacity="0.55">
+            <line x1="220" y1="310" x2="580" y2="310"/>
+            <line x1="220" y1="355" x2="580" y2="355"/>
+            <line x1="220" y1="400" x2="580" y2="400"/>
+            <line x1="220" y1="445" x2="580" y2="445"/>
+            <line x1="275" y1="265" x2="275" y2="310"/>
+            <line x1="360" y1="265" x2="360" y2="310"/>
+            <line x1="445" y1="265" x2="445" y2="310"/>
+            <line x1="530" y1="265" x2="530" y2="310"/>
+          </g>
+
+          <!-- Roof -->
+          <path d="M170 275 L400 105 L630 275 Z" fill="#B94B3A"/>
+          <path d="M145 280 L400 90 L655 280 L630 305 L400 130 L170 305 Z" fill="#8E3529"/>
+
+          <!-- Roof highlight -->
+          <path d="M400 110 L625 280" stroke="#D96B55" stroke-width="12" opacity="0.7"/>
+          <path d="M400 110 L175 280" stroke="#D96B55" stroke-width="12" opacity="0.7"/>
+
+          <!-- Chimney -->
+          <rect x="500" y="135" width="55" height="120" fill="#A94336"/>
+          <rect x="493" y="128" width="69" height="14" rx="2" fill="#87342B"/>
+
+          <!-- Chimney smoke -->
+          <g fill="#D9D9D9" opacity="0.75">
+            <circle cx="530" cy="105" r="20"/>
+            <circle cx="550" cy="75" r="25"/>
+            <circle cx="535" cy="40" r="18"/>
+          </g>
+
+          <!-- Upper window -->
+          <rect x="335" y="190" width="130" height="80" rx="4" fill="#6EC6E8"/>
+          <rect x="330" y="185" width="140" height="90" rx="5" fill="none" stroke="#FFFFFF" stroke-width="10"/>
+          <line x1="400" y1="190" x2="400" y2="270" stroke="#FFFFFF" stroke-width="7"/>
+          <line x1="335" y1="230" x2="465" y2="230" stroke="#FFFFFF" stroke-width="7"/>
+
+//Windows Group (Reused for Left & Right Windows)
+  <g id="house-windows" fill="#FFD54F" stroke="#4A2E18">
+
+    <!-- Window 1: Base Location (Left Window) -->
+    <g id="single-window">
+      <!-- Outer Border / Pane (Uses group fill & stroke) -->
+      <rect x="250" y="320" width="110" height="95" rx="5" stroke-width="9"/>
+      <rect x="255" y="325" width="100" height="85" rx="4" stroke="none"/>
+      
+      <!-- Window Grids (Uses group stroke="#FFFFFF") -->
+      <line x1="305" y1="325" x2="305" y2="410" stroke-width="6"/>
+      <line x1="255" y1="367" x2="355" y2="367" stroke-width="6"/>
+    </g>
+
+    <!-- Window 2: Right Window (Reuses identical shapes shifted +190px on X) -->
+    <use href="#single-window" transform="translate(190, 0)"/>
+
+  </g>
+          <!-- Door -->
+          <rect x="365" y="350" width="70" height="125" rx="5" fill="#795548"/>
+          <rect x="370" y="355" width="60" height="120" fill="#8D5A45" stroke="#603D30" stroke-width="4"/>
+
+          <!-- Door window -->
+          <rect x="382" y="370" width="36" height="38" rx="3" fill="#6EC6E8"/>
+          <line x1="400" y1="370" x2="400" y2="408" stroke="#FFFFFF" stroke-width="3"/>
+
+          <!-- Door handle -->
+          <circle cx="415" cy="435" r="5" fill="#FFD54F"/>
+
+          <!-- Door steps -->
+          <rect x="350" y="475" width="100" height="12" rx="3" fill="#B0B0B0"/>
+          <rect x="340" y="487" width="120" height="12" rx="3" fill="#909090"/>
+
+          <!-- Pathway -->
+          <path d="M370 495 Q400 520 430 600 H300 Q350 530 370 495Z" fill="#D2B48C"/>
+
+          <!-- Fence -->
+          <g fill="#F5F5F5" stroke="#D0D0D0" stroke-width="3">
+            <rect x="40" y="405" width="12" height="90"/>
+            <rect x="105" y="405" width="12" height="90"/>
+            <rect x="170" y="405" width="12" height="90"/>
+            <rect x="618" y="405" width="12" height="90"/>
+            <rect x="683" y="405" width="12" height="90"/>
+            <rect x="748" y="405" width="12" height="90"/>
+          </g>
+
+          <g stroke="#FFFFFF" stroke-width="10">
+            <line x1="45" y1="430" x2="180" y2="430"/>
+            <line x1="45" y1="465" x2="180" y2="465"/>
+            <line x1="623" y1="430" x2="755" y2="430"/>
+            <line x1="623" y1="465" x2="755" y2="465"/>
+          </g>
+
+          <!-- Flowers -->
+          <g>
+            <circle cx="205" cy="470" r="7" fill="#FFEB3B"/>
+            <circle cx="195" cy="470" r="7" fill="#FF80AB"/>
+            <circle cx="215" cy="470" r="7" fill="#FF80AB"/>
+            <circle cx="205" cy="460" r="7" fill="#FF80AB"/>
+            <circle cx="205" cy="480" r="7" fill="#FF80AB"/>
+
+            <circle cx="590" cy="475" r="7" fill="#FFEB3B"/>
+            <circle cx="580" cy="475" r="7" fill="#CE93D8"/>
+            <circle cx="600" cy="475" r="7" fill="#CE93D8"/>
+            <circle cx="590" cy="465" r="7" fill="#CE93D8"/>
+            <circle cx="590" cy="485" r="7" fill="#CE93D8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+      <p><em>Built with the assistance of Generative AI (Gemini).</em></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

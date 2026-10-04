@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Energy Consumption Analysis - EcoAppliance AU</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="brand-link">
+        <img src="assets/img/PowerIcon.png" alt="Electric Wizard Cat Logo" class="brand-logo">
+        <span>ArcaneVolt AU ⚡</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="televisions.html" class="nav-link active">Televisions</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="svg.html" class="nav-link">SVG House</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>The Cost of Going Big: TV Screen Size vs Energy Demand</h1>
+    <p>Modern display marketing pushes consumers toward increasingly massive panels. While screen size scales diagonally in inches, surface area and backlight arrays grow quadratically. Using Australian Energy Rating compliance data, we analyzed how panel scaling impacts your power bill.</p>
+
+    <!-- Visualisation 1: Binned Categories -->
+    <div class="card" style="margin-top: 2rem;">
+      <h3>1. Aggregated Size Category Comparison</h3>
+      <p>Televisions were categorized into <strong>Small (&lt;44")</strong>, <strong>Medium (44"–65")</strong>, and <strong>Large (&gt;65")</strong> using our KNIME data processing pipeline.</p>
+      
+      <div style="text-align: center; margin: 1.5rem 0;">
+        <img src="assets/img/AverageEnergy.png" alt="KNIME Bar Chart: Average Energy by Size Category" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--card-border);">
+      </div>
+
+      <p><strong>Key Insight:</strong> The jump from a Small display (~130 kWh/year) to a Large living room panel (~745 kWh/year) represents a <strong>470% increase</strong> in average electricity consumption, adding substantial recurring costs over a standard 7-year TV lifespan.</p>
+    </div>
+
+    <!-- Data Summary Stat Grid -->
+    <div class="grid-container">
+      <div class="card">
+        <h3>Small Displays (&lt;44")</h3>
+        <p style="font-size: 1.8rem; font-weight: 800; color: var(--neon-cyan); margin: 0.5rem 0;">~130 kWh/yr</p>
+        <p>Estimated operating cost: <strong>~$39/year</strong>. Ideal for bedrooms, home offices, and second screens.</p>
+      </div>
+
+      <div class="card">
+        <h3>Medium Displays (44"–65")</h3>
+        <p style="font-size: 1.8rem; font-weight: 800; color: var(--neon-purple); margin: 0.5rem 0;">~385 kWh/yr</p>
+        <p>Estimated operating cost: <strong>~$115/year</strong>. The current standard sweet-spot for Australian households.</p>
+      </div>
+
+      <div class="card">
+        <h3>Large Displays (&gt;65")</h3>
+        <p style="font-size: 1.8rem; font-weight: 800; color: var(--arcane-pink); margin: 0.5rem 0;">~745+ kWh/yr</p>
+        <p>Estimated operating cost: <strong>~$223+/year</strong>. High-intensity home theaters requiring robust ventilation and power.</p>
+      </div>
+    </div>
+
+    <!-- Visualisation 2: Granular Inch-by-Inch Breakdown -->
+    <div class="card" style="margin-top: 2rem;">
+      <h3>2. Granular Inch-by-Inch Consumption Curve</h3>
+      <p>Examining individual screen sizes (from 16" through to 116") reveals an exponential power curve rather than a linear increase.</p>
+      
+      <div style="text-align: center; margin: 1.5rem 0;">
+        <img src="assets/img/Average2.png" alt="KNIME Bar Chart: Granular Screen Size vs Energy" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--card-border);">
+      </div>
+
+      <p><strong>Technical Context:</strong> Notice the sharp volatility and upward spike beyond the 75-inch threshold. Flagship ultra-large TVs (85" to 114") push between 800 and 1,700 kWh/year due to high-nit Mini-LED zones and increased cooling overheads needed to maintain HDR peak brightness levels.</p>
+    </div>
+
+    <!-- Recommendations / Takeaways -->
+    <h2>Consumer Recommendations</h2>
+    <div class="grid-container">
+      <div class="card">
+        <h3>Right-Size for Distance</h3>
+        <p>Calculate optimal viewing distance before buying. Buying an 85" TV for a small living room wastes electricity without offering significant immersion gains.</p>
+      </div>
+      <div class="card">
+        <h3>Leverage Ambient Light Sensors</h3>
+        <p>Enable automatic brightness adjustment in TV picture settings to throttle power draw during evening viewing.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+      <p><em>Built with the assistance of Generative AI (Gemini).</em></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

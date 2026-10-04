@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Appliance Energy Consumption</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="brand-link">
+        <img src="assets/img/PowerIcon.png" alt="Energy Saver Logo" class="brand-logo">
+        <span>EcoAppliance</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="televisions.html" class="nav-link">Televisions</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="svg.html" class="nav-link">SVG House</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Australian Appliance Energy Consumption</h1>
+    <p>Understanding how household appliances use electricity is critical for managing utility costs and reducing carbon emissions. Australia's Energy Rating Label scheme assists consumers in comparing the efficiency of various domestic products.</p>
+
+    <div class="grid-container">
+      <div class="card">
+        <h3>The Star Rating System</h3>
+        <p>In Australia, appliances are graded from 1 to 10 stars. The more stars an appliance carries, the more energy-efficient it is compared to similar models on the market.</p>
+      </div>
+      <div class="card">
+        <h3>Running Cost Estimates</h3>
+        <p>A typical household can save hundreds of dollars each year simply by choosing higher-rated appliances when replacing existing units.</p>
+      </div>
+    </div>
+
+<section class="card" style="margin-top: 2rem;">
+  <h2>TV Energy Consumption - D3 Bar Chart</h2>
+  <p>An interactive, data-driven visualization scaling dynamically to the viewport.</p>
+
+  <!-- Responsive SVG Container -->
+  <div class="responsive-svg-container"></div>
+</section>
+
+
+
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      
+      <div class="accordion-item">
+        <button class="accordion-btn">
+          What is the Australian Energy Rating Label?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>The Energy Rating Label helps Australian consumers compare the energy consumption and efficiency of domestic appliances before purchasing.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">
+          How much can an energy-efficient appliance save me?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>Depending on the appliance type and usage, upgrading from a 2-star to a 6-star model can reduce electricity consumption for that unit by up to 30–50% annually.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">
+          Are standby power costs significant?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>Yes, standby power (or phantom load) can account for up to 10% of a standard Australian household's annual electricity bill.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; <span id="current-year"></span> Jeevan. All rights reserved.</p>
+      <p><em>Built with the assistance of Generative AI (Gemini).</em></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+ <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <script src="assets/js/d3.js"></script>
+</body>
+</html>
